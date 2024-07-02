@@ -9,10 +9,18 @@ import {useIntl, FormattedMessage} from 'react-intl'
 import {useLocation} from 'react-router-dom'
 
 // Components
-import {Box, Button, Stack, Link} from '@salesforce/retail-react-app/app/components/shared/ui'
+import {
+    Box,
+    Button,
+    Stack,
+    Link,
+    Heading,
+    Flex,
+    Image
+} from '@salesforce/retail-react-app/app/components/shared/ui'
 
 // Project Components
-import Hero from '@salesforce/retail-react-app/app/components/hero'
+import Hero from '../../components/hero'
 import Seo from '@salesforce/retail-react-app/app/components/seo'
 import Section from '@salesforce/retail-react-app/app/components/section'
 import ProductScroller from '@salesforce/retail-react-app/app/components/product-scroller'
@@ -25,6 +33,8 @@ import useEinstein from '@salesforce/retail-react-app/app/hooks/use-einstein'
 
 // Constants
 import {
+    CUSTOM_HOME_SEC_ESENTIAL,
+    CUSTOM_HOME_SUBTITLE,
     CUSTOM_HOME_TITLE,
     HOME_SHOP_PRODUCTS_CATEGORY_ID,
     HOME_SHOP_PRODUCTS_LIMIT,
@@ -34,6 +44,7 @@ import {
 
 import {useServerContext} from '@salesforce/pwa-kit-react-sdk/ssr/universal/hooks'
 import {useProductSearch} from '@salesforce/commerce-sdk-react'
+import SectionHighlight from '../../components/sectionHighlight'
 
 /**
  * This is the home page for Retail React App.
@@ -80,32 +91,36 @@ const Home = () => {
                 description="Commerce Cloud Retail React App"
                 keywords="Commerce Cloud, Retail React App, React Storefront"
             />
-
             <Hero
                 title={CUSTOM_HOME_TITLE}
+                subtitle={CUSTOM_HOME_SUBTITLE}
                 img={{
-                    src: getAssetUrl('static/img/hero.png'),
+                    src: getAssetUrl('static/img/hero.jpg'),
                     alt: 'npx pwa-kit-create-app'
                 }}
                 actions={
-                    <Stack spacing={{base: 4, sm: 6}} direction={{base: 'column', sm: 'row'}}>
-                        <Button
-                            as={Link}
-                            href="https://developer.salesforce.com/docs/commerce/pwa-kit-managed-runtime/guide/getting-started.html"
-                            target="_blank"
-                            width={{base: 'full', md: 'inherit'}}
-                            paddingX={7}
-                            _hover={{textDecoration: 'none'}}
-                        >
-                            <FormattedMessage
-                                defaultMessage="Get started"
-                                id="home.link.get_started"
-                            />
-                        </Button>
-                    </Stack>
+                    <Button
+                        as={Link}
+                        href="https://developer.salesforce.com/docs/commerce/pwa-kit-managed-runtime/guide/getting-started.html"
+                        target="_blank"
+                        width={{base: 'full', md: 'inherit'}}
+                        paddingX={7}
+                        _hover={{textDecoration: 'none'}}
+                    >
+                        <FormattedMessage defaultMessage="Get started" id="home.link.get_started" />
+                    </Button>
                 }
             />
-
+            <SectionHighlight
+                title={CUSTOM_HOME_SEC_ESENTIAL.title}
+                subtitle={CUSTOM_HOME_SEC_ESENTIAL.subtitle}
+                description={CUSTOM_HOME_SEC_ESENTIAL.description}
+                sourceImages={[
+                    {src: getAssetUrl('/static/img/sec_essential_1.jpg'), alt: ''},
+                    {src: getAssetUrl('/static/img/sec_essential_2.jpg'), alt: ''},
+                    {src: getAssetUrl('/static/img/sec_essential_3.jpg'), alt: ''}
+                ]}
+            />
             {productSearchResult && (
                 <Section
                     padding={4}
