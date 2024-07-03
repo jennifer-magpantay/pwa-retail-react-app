@@ -25,7 +25,6 @@ In progress.
 
 ## Getting Started
 
-	@@ -30,48 +9,48 @@ In progress.
 -   Node 18 or later
 -   npm 9 or later
 
