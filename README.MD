@@ -58,9 +58,10 @@ Start the server
 
 This will open a browser and your storefront will be running on http://localhost:3000.
 
-Desing inspiration from [Orix Creative | Milana E-commerce Web](https://dribbble.com/shots/18214786-Milana-E-commerce-Web). Imagesn from [unsplash](https://unsplash.com).
+## References
 
-Developed with curiosity by Jennifer Magpantay.
+ - Desing inspiration from [Orix Creative | Milana E-commerce Web](https://dribbble.com/shots/18214786-Milana-E-commerce-Web)
+ - Images from [unsplash](https://unsplash.com)
 
 **Reach me out**
 
