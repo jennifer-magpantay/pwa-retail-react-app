@@ -1,17 +1,16 @@
-/*
- * Copyright (c) 2021, salesforce.com, inc.
- * All rights reserved.
- * SPDX-License-Identifier: BSD-3-Clause
- * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
- */
 import React from 'react'
 import PropTypes from 'prop-types'
 import {ChakraProvider} from '@salesforce/retail-react-app/app/components/shared/ui'
 
+// custom Fonts
+import Fonts from '../../theme/fonts'
+
+// overrided theme
+import overridedTheme from '../../theme'
+
 // Removes focus for non-keyboard interactions for the whole application
 import 'focus-visible/dist/focus-visible'
 
-import theme from '@salesforce/retail-react-app/app/theme'
 import {MultiSiteProvider} from '@salesforce/retail-react-app/app/contexts'
 import {
     resolveSiteFromUrl,
@@ -28,14 +27,6 @@ import {useCorrelationId} from '@salesforce/pwa-kit-react-sdk/ssr/universal/hook
 import {getAppOrigin} from '@salesforce/pwa-kit-react-sdk/utils/url'
 import {ReactQueryDevtools} from '@tanstack/react-query-devtools'
 
-/**
- * Use the AppConfig component to inject extra arguments into the getProps
- * methods for all Route Components in the app – typically you'd want to do this
- * to inject a connector instance that can be used in all Pages.
- *
- * You can also use the AppConfig to configure a state-management library such
- * as Redux, or Mobx, if you like.
- */
 const AppConfig = ({children, locals = {}}) => {
     const {correlationId} = useCorrelationId()
     const headers = {
@@ -61,7 +52,10 @@ const AppConfig = ({children, locals = {}}) => {
             logger={createLogger({packageName: 'commerce-sdk-react'})}
         >
             <MultiSiteProvider site={locals.site} locale={locals.locale} buildUrl={locals.buildUrl}>
-                <ChakraProvider theme={theme}>{children}</ChakraProvider>
+                <ChakraProvider theme={overridedTheme}>
+                    <Fonts />
+                    {children}
+                </ChakraProvider>
             </MultiSiteProvider>
             <ReactQueryDevtools />
         </CommerceApiProvider>
