@@ -60,8 +60,8 @@ This will open a browser and your storefront will be running on http://localhost
 
 ## References
 
--   Desing inspiration from [Orix Creative | Milana E-commerce Web](https://dribbble.com/shots/18214786-Milana-E-commerce-Web)
--   Images from [unsplash](https://unsplash.com)
+ - Desing inspiration from [Orix Creative | Milana E-commerce Web](https://dribbble.com/shots/18214786-Milana-E-commerce-Web)
+ - Images from [unsplash](https://unsplash.com)
 
 **Reach me out**
 
