@@ -9,7 +9,7 @@ The Retail Ract App is built with PWA Kit, which provides a bunch of helpful res
 -   Service worker and manifest for Progressive Web App (PWA) features
 -   Test suites
 
-Find more about [PWA Kit on](https://github.com/SalesforceCommerceCloud/pwa-kit).
+Find more about [PWA Kit documentation](https://github.com/SalesforceCommerceCloud/pwa-kit).
 
 ## Technologies
 
