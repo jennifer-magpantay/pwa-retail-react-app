@@ -1,77 +1,72 @@
-/*
- * Copyright (c) 2021, salesforce.com, inc.
- * All rights reserved.
- * SPDX-License-Identifier: BSD-3-Clause
- * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
- */
-export default {
-    baseStyle: {
-        borderRadius: 'base'
-    },
-    variants: {
-        solid: (props) =>
-            props.colorScheme === 'blue'
-                ? {
-                      backgroundColor: 'blue.600',
-                      color: 'white',
-                      _hover: {bg: 'blue.700', _disabled: {bg: 'blue.300'}},
-                      _active: {bg: 'blue.800'},
-                      _disabled: {bg: 'blue.300'}
-                  }
-                : {},
-        outline: (props) =>
-            props.colorScheme === 'black'
-                ? {color: 'gray.900', _hover: {bg: 'gray.50'}, borderColor: 'gray.200'}
-                : {color: 'blue.600', _hover: {bg: 'gray.50'}},
-        footer: {
-            fontSize: 'sm',
-            backgroundColor: 'gray.100',
-            color: 'black',
-            _hover: {bg: 'gray.200'},
-            _active: {bg: 'gray.300'},
-            paddingLeft: 3,
-            paddingRight: 3
-        },
-        link: (props) => ({
-            color: props.colorScheme === 'red' ? 'red.500' : 'blue.600',
-            fontWeight: 'normal',
-            minWidth: '1em',
-            lineHeight: 4
-        }),
-        'menu-link': {
-            color: 'black',
-            justifyContent: 'flex-start',
-            fontSize: 'sm',
-            _hover: {bg: 'gray.50', textDecoration: 'none'},
-            _activeLink: {
-                bg: 'gray.50',
+import colors from '../../foundations/colors'
+
+const buttons = {
+    Button: {
+        baseStyle: {
+            minW: 'fit-content',
+            fontWeight: 'bold',
+            textTransform: 'uppercase',
+            borderRadius: 'none',
+            _hover: {
                 textDecoration: 'none'
             }
         },
-        'menu-link-mobile': {
-            color: 'black',
-            justifyContent: 'flex-start',
-            fontSize: 'sm',
-            _hover: {bg: 'gray.50', textDecoration: 'none'},
-            _activeLink: {
-                bg: 'gray.100',
-                textDecoration: 'none'
+        sizes: {
+            sm: {
+                fontSize: '0.875rem',
+                px: 8,
+                py: 4
+            },
+            md: {
+                fontSize: '0.875rem',
+                px: 12,
+                py: 6
+            },
+            lg: {
+                fontSize: '1rem',
+                px: 16,
+                py: 8
             }
         },
-        'search-link': {
-            color: 'black',
-            justifyContent: 'flex-start',
-            fontSize: 'sm',
-            _hover: {textDecoration: 'none'}
+        variants: {
+            solid: {
+                bg: colors.colors.white,
+                color: colors.colors.black,
+                _hover: {
+                    bg: colors.colors.whiteAlpha[900]
+                },
+                _focusVisible: {},
+                _active: {},
+                _disabled: {}
+            },
+            outline: {
+                bg: colors.colors.transparent,
+                border: '4px',
+                borderColor: colors.colors.black,
+                color: colors.colors.black,
+                _hover: {
+                    bg: colors.colors.whiteAlpha[500],
+                    borderColor: colors.colors.blackAlpha[700],
+                    color: colors.colors.blackAlpha[700]
+                },
+                _focusVisible: {},
+                _active: {},
+                _disabled: {}
+            },
+            ghost: {
+                bg: colors.colors.transparent,
+                borderWidth: '1px',
+                borderColor: colors.colors.transparent,
+                _hover: {
+                    bg: colors.colors.whiteAlpha[800],
+                    borderColor: colors.colors.whiteAlpha[800]
+                },
+                _focusVisible: {},
+                _active: {},
+                _disabled: {}
+            }
         }
-    },
-    sizes: {
-        md: {
-            height: 11,
-            minWidth: 11
-        }
-    },
-    defaultProps: {
-        colorScheme: 'blue'
     }
 }
+
+export default buttons

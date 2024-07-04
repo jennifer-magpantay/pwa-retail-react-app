@@ -1,8 +1,11 @@
-import {extendTheme} from '@salesforce/retail-react-app/app/components/shared/ui'
+import {extendTheme} from '@chakra-ui/react'
 
 // Foundational style overrides
-import styles from '@salesforce/retail-react-app/app/theme/foundations/styles'
-import colors from '@salesforce/retail-react-app/app/theme/foundations/colors'
+import globalStyles from './foundations/globalStyles'
+import textStyles from './foundations/textStyles'
+import colors from './foundations/colors'
+import fonts from './foundations/fonts'
+
 import gradients from '@salesforce/retail-react-app/app/theme/foundations/gradients'
 import sizes from '@salesforce/retail-react-app/app/theme/foundations/sizes'
 import space from '@salesforce/retail-react-app/app/theme/foundations/space'
@@ -10,10 +13,11 @@ import layerStyles from '@salesforce/retail-react-app/app/theme/foundations/laye
 import shadows from '@salesforce/retail-react-app/app/theme/foundations/shadows'
 
 // Base component style overrides
+import buttons from './components/base/button'
+
 import Alert from '@salesforce/retail-react-app/app/theme/components/base/alert'
 import Accordion from '@salesforce/retail-react-app/app/theme/components/base/accordion'
 import Badge from '@salesforce/retail-react-app/app/theme/components/base/badge'
-import Button from '@salesforce/retail-react-app/app/theme/components/base/button'
 import Checkbox from '@salesforce/retail-react-app/app/theme/components/base/checkbox'
 import Container from '@salesforce/retail-react-app/app/theme/components/base/container'
 import Drawer from '@salesforce/retail-react-app/app/theme/components/base/drawer'
@@ -46,23 +50,24 @@ import SwatchGroup from '@salesforce/retail-react-app/app/theme/components/proje
 import ImageGallery from '@salesforce/retail-react-app/app/theme/components/project/image-gallery'
 
 export const overrides = {
-    fonts: {
-        heading: `'RowdiesBold', sans-serif`,
-        body: `'Prompt', sans-serif`
+    styles: {
+        ...globalStyles
     },
-    styles,
+    // foundation components
+    ...textStyles,
+    ...colors,
+    ...fonts,
     layerStyles,
-    colors,
     sizes,
     space,
     gradients,
     shadows,
     components: {
         // base components
+        ...buttons,
         Accordion,
         Alert,
         Badge,
-        Button,
         Checkbox,
         Container,
         Drawer,
