@@ -1,9 +1,3 @@
-/*
- * Copyright (c) 2021, salesforce.com, inc.
- * All rights reserved.
- * SPDX-License-Identifier: BSD-3-Clause
- * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
- */
 import React, {useRef, useState} from 'react'
 import PropTypes from 'prop-types'
 import {useIntl} from 'react-intl'
@@ -16,7 +10,8 @@ import {
     HamburgerIcon,
     ChevronDownIcon,
     HeartIcon,
-    SignoutIcon
+    SignoutIcon,
+    ChevronDown
 } from '../icons'
 
 import {
@@ -222,7 +217,7 @@ const Header = ({
                                         id: 'header.button.assistive_msg.my_account_menu',
                                         defaultMessage: 'Open account menu'
                                     })}
-                                    icon={<ChevronDownIcon />}
+                                    icon={<ChevronDown />}
                                     variant="unstyled"
                                     {...styles.icons}
                                     {...styles.arrowDown}

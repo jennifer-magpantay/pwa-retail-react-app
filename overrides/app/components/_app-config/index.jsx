@@ -2,9 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {ChakraProvider} from '@salesforce/retail-react-app/app/components/shared/ui'
 
-// custom Fonts
-import Fonts from '../../theme/fonts'
-
 // overrided theme
 import overridedTheme from '../../theme'
 
@@ -52,10 +49,7 @@ const AppConfig = ({children, locals = {}}) => {
             logger={createLogger({packageName: 'commerce-sdk-react'})}
         >
             <MultiSiteProvider site={locals.site} locale={locals.locale} buildUrl={locals.buildUrl}>
-                <ChakraProvider theme={overridedTheme}>
-                    <Fonts />
-                    {children}
-                </ChakraProvider>
+                <ChakraProvider theme={overridedTheme}>{children}</ChakraProvider>
             </MultiSiteProvider>
             <ReactQueryDevtools />
         </CommerceApiProvider>

@@ -1,19 +1,6 @@
-/*
- * Copyright (c) 2021, salesforce.com, inc.
- * All rights reserved.
- * SPDX-License-Identifier: BSD-3-Clause
- * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-    Box,
-    Flex,
-    Heading,
-    Stack,
-    Image
-} from '@salesforce/retail-react-app/app/components/shared/ui'
+import {Box, Flex, Heading, Stack, Image, useStyleConfig, Text} from '@chakra-ui/react'
 
 const Hero = ({title, subtitle, img, actions, ...props}) => {
     const {src, alt} = img
@@ -34,15 +21,9 @@ const Hero = ({title, subtitle, img, actions, ...props}) => {
                 direction={{base: 'column', lg: 'row'}}
             >
                 <Stack flex={1} spacing={{base: 5, md: 8}}>
-                    <Heading
-                        as="h1"
-                        color="white"
-                        fontSize={{base: '3rem', md: '6rem', lg: '8rem'}}
-                        lineHeight={1}
-                        textTransform="uppercase"
-                    >
+                    <Text as="h1" textStyle="heroTitle" color="white">
                         {title}
-                    </Heading>
+                    </Text>
                     {actions && (
                         <Box
                             width={{base: 'full', lg: 'inherit'}}
@@ -53,15 +34,15 @@ const Hero = ({title, subtitle, img, actions, ...props}) => {
                     )}
                 </Stack>
                 <Stack flex={1} spacing={{base: 5, md: 8}}>
-                    <Heading
+                    <Text
                         as="h2"
-                        color="white"
-                        fontSize={{base: '2xl', md: '3xl', lg: '4xl'}}
+                        textStyle="heroSubtitle"
                         width={{base: '100%', lg: '65%'}}
                         marginLeft={{base: 'none', lg: 'auto'}}
+                        color="white"
                     >
                         {subtitle}
-                    </Heading>
+                    </Text>
                 </Stack>
                 {actions && (
                     <Box
@@ -99,20 +80,11 @@ const Hero = ({title, subtitle, img, actions, ...props}) => {
 Hero.displayName = 'Hero'
 
 Hero.propTypes = {
-    /**
-     * Hero component image
-     */
     img: PropTypes.shape({
         src: PropTypes.string,
         alt: PropTypes.string
     }),
-    /**
-     * Hero component main title
-     */
     title: PropTypes.string,
-    /**
-     * Call to action component(s)
-     */
     actions: PropTypes.element
 }
 

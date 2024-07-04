@@ -9,15 +9,7 @@ import {useIntl, FormattedMessage} from 'react-intl'
 import {useLocation} from 'react-router-dom'
 
 // Components
-import {
-    Box,
-    Button,
-    Stack,
-    Link,
-    Heading,
-    Flex,
-    Image
-} from '@salesforce/retail-react-app/app/components/shared/ui'
+import {Box, Button, Stack, Link, Heading, Flex, Image, useStyleConfig} from '@chakra-ui/react'
 
 // Project Components
 import Hero from '../../components/hero'
@@ -56,6 +48,7 @@ const Home = () => {
     const intl = useIntl()
     const einstein = useEinstein()
     const {pathname} = useLocation()
+    const styles = useStyleConfig('Button')
 
     // useServerContext is a special hook introduced in v3 PWA Kit SDK.
     // It replaces the legacy `getProps` and provide a react hook interface for SSR.
@@ -103,9 +96,9 @@ const Home = () => {
                         as={Link}
                         href="https://developer.salesforce.com/docs/commerce/pwa-kit-managed-runtime/guide/getting-started.html"
                         target="_blank"
+                        variant="solid"
                         width={{base: 'full', md: 'inherit'}}
-                        paddingX={7}
-                        _hover={{textDecoration: 'none'}}
+                        size="lg"
                     >
                         <FormattedMessage defaultMessage="Get started" id="home.link.get_started" />
                     </Button>
@@ -120,6 +113,19 @@ const Home = () => {
                     {src: getAssetUrl('/static/img/sec_essential_2.jpg'), alt: ''},
                     {src: getAssetUrl('/static/img/sec_essential_3.jpg'), alt: ''}
                 ]}
+                actions={
+                    <Button
+                        as={Link}
+                        href="https://developer.salesforce.com/docs/commerce/pwa-kit-managed-runtime/guide/getting-started.html"
+                        target="_blank"
+                        variant="outline"
+                        size="lg"
+                        width={{base: 'full', md: 'inherit'}}
+                        marginTop={4}
+                    >
+                        <FormattedMessage defaultMessage="Shop now" id="home.link.shop_now" />
+                    </Button>
+                }
             />
             {productSearchResult && (
                 <Section
