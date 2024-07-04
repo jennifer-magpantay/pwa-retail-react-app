@@ -5,9 +5,7 @@ const globalStyles = {
             color: 'gray.900'
         },
         body: {
-            minHeight: '100vh',
-            border: '1px',
-            borderColor: 'red'
+            minHeight: '100vh'
         },
         '.react-target': {
             display: 'flex',
