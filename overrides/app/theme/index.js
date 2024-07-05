@@ -3,13 +3,13 @@ import {extendTheme} from '@chakra-ui/react'
 // Foundational style overrides
 import globalStyles from './foundations/globalStyles'
 import textStyles from './foundations/textStyles'
+import layerStyles from './foundations/layerStyles'
 import colors from './foundations/colors'
 import fonts from './foundations/fonts'
 
 import gradients from '@salesforce/retail-react-app/app/theme/foundations/gradients'
 import sizes from '@salesforce/retail-react-app/app/theme/foundations/sizes'
 import space from '@salesforce/retail-react-app/app/theme/foundations/space'
-import layerStyles from '@salesforce/retail-react-app/app/theme/foundations/layerStyles'
 import shadows from '@salesforce/retail-react-app/app/theme/foundations/shadows'
 
 // Base component style overrides
@@ -57,7 +57,7 @@ export const overrides = {
     ...textStyles,
     ...colors,
     ...fonts,
-    layerStyles,
+    ...layerStyles,
     sizes,
     space,
     gradients,

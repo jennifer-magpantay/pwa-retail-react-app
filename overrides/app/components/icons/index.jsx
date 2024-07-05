@@ -1,19 +1,7 @@
-/*
- * Copyright (c) 2021, salesforce.com, inc.
- * All rights reserved.
- * SPDX-License-Identifier: BSD-3-Clause
- * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
- */
 import React, {forwardRef, useContext} from 'react'
 import {defineMessage, IntlContext} from 'react-intl'
 import PropTypes from 'prop-types'
 import {Icon, useTheme} from '@salesforce/retail-react-app/app/components/shared/ui'
-
-// Our own SVG imports. These will be extracted to a single sprite sheet by the
-// svg-sprite-loader webpack plugin at build time and injected in the <body> tag
-// during SSR.
-// NOTE: Another solution would be to use `require-context.macro` package to accomplish
-// importing icon svg's.
 
 // overrided
 import '../../assets/svg/basket.svg'
@@ -21,6 +9,7 @@ import '../../assets/svg/heart.svg'
 import '../../assets/svg/user.svg'
 import '../../assets/svg/account.svg'
 import '../../assets/svg/hamburger.svg'
+import '../../assets/svg/chevron-down.svg'
 
 import BrandLogoSymbol from '../../assets/svg/brand-logo.svg'
 import LocationSymbol from '../../assets/svg/location.svg'
@@ -29,7 +18,6 @@ import '@salesforce/retail-react-app/app/assets/svg/alert.svg'
 import '@salesforce/retail-react-app/app/assets/svg/check.svg'
 import '@salesforce/retail-react-app/app/assets/svg/check-circle.svg'
 import '@salesforce/retail-react-app/app/assets/svg/chevron-up.svg'
-import '@salesforce/retail-react-app/app/assets/svg/chevron-down.svg'
 import '@salesforce/retail-react-app/app/assets/svg/chevron-right.svg'
 import '@salesforce/retail-react-app/app/assets/svg/chevron-left.svg'
 import '@salesforce/retail-react-app/app/assets/svg/chevron-right.svg'
@@ -148,12 +136,12 @@ export const HeartIcon = icon('heart')
 export const UserIcon = icon('user')
 export const AccountIcon = icon('account')
 export const HamburgerIcon = icon('hamburger')
+export const ChevronDownIcon = icon('chevron-down')
 
 export const AmexIcon = icon('cc-amex', {viewBox: AmexSymbol.viewBox})
 export const AlertIcon = icon('alert')
 export const CheckIcon = icon('check')
 export const CheckCircleIcon = icon('check-circle')
-export const ChevronDownIcon = icon('chevron-down')
 export const ChevronLeftIcon = icon('chevron-left')
 export const ChevronRightIcon = icon('chevron-right')
 export const ChevronUpIcon = icon('chevron-up')

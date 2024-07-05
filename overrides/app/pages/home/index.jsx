@@ -1,30 +1,18 @@
-/*
- * Copyright (c) 2023, Salesforce, Inc.
- * All rights reserved.
- * SPDX-License-Identifier: BSD-3-Clause
- * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
- */
 import React, {useEffect} from 'react'
 import {useIntl, FormattedMessage} from 'react-intl'
 import {useLocation} from 'react-router-dom'
 
-// Components
-import {Box, Button, Stack, Link, Heading, Flex, Image, useStyleConfig} from '@chakra-ui/react'
-
-// Project Components
-import Hero from '../../components/hero'
-import Seo from '@salesforce/retail-react-app/app/components/seo'
-import Section from '@salesforce/retail-react-app/app/components/section'
-import ProductScroller from '@salesforce/retail-react-app/app/components/product-scroller'
-
-// Others
-import {getAssetUrl} from '@salesforce/pwa-kit-react-sdk/ssr/universal/utils'
-
 //Hooks
 import useEinstein from '@salesforce/retail-react-app/app/hooks/use-einstein'
+import {useServerContext} from '@salesforce/pwa-kit-react-sdk/ssr/universal/hooks'
+import {useProductSearch} from '@salesforce/commerce-sdk-react'
+
+// Utils
+import {getAssetUrl} from '@salesforce/pwa-kit-react-sdk/ssr/universal/utils'
 
 // Constants
 import {
+    CUSTOM_HOME_BANNER_TITLE,
     CUSTOM_HOME_SEC_ESENTIAL,
     CUSTOM_HOME_SUBTITLE,
     CUSTOM_HOME_TITLE,
@@ -34,21 +22,22 @@ import {
     STALE_WHILE_REVALIDATE
 } from '../../constants'
 
-import {useServerContext} from '@salesforce/pwa-kit-react-sdk/ssr/universal/hooks'
-import {useProductSearch} from '@salesforce/commerce-sdk-react'
-import SectionHighlight from '../../components/sectionHighlight'
+// Components
+import {Box, Button, Link, useStyleConfig} from '@chakra-ui/react'
 
-/**
- * This is the home page for Retail React App.
- * The page is created for demonstration purposes.
- * The page renders SEO metadata and a few promotion
- * categories and products, data is from local file.
- */
+// Project Components
+import Hero from '../../components/hero'
+import Section from '../../components/section'
+import ProductsHighlight from '../../components/productsHighlight'
+import ProductsGrid from '../../components/sectionProductsGrid'
+import Banner from '../../components/banner'
+import Seo from '@salesforce/retail-react-app/app/components/seo'
+import ProductScroller from '@salesforce/retail-react-app/app/components/product-scroller'
+
 const Home = () => {
     const intl = useIntl()
     const einstein = useEinstein()
     const {pathname} = useLocation()
-    const styles = useStyleConfig('Button')
 
     // useServerContext is a special hook introduced in v3 PWA Kit SDK.
     // It replaces the legacy `getProps` and provide a react hook interface for SSR.
@@ -97,29 +86,59 @@ const Home = () => {
                         href="https://developer.salesforce.com/docs/commerce/pwa-kit-managed-runtime/guide/getting-started.html"
                         target="_blank"
                         variant="solid"
+                        size={['sm', 'md', 'lg']}
                         width={{base: 'full', md: 'inherit'}}
-                        size="lg"
                     >
                         <FormattedMessage defaultMessage="Get started" id="home.link.get_started" />
                     </Button>
                 }
             />
-            <SectionHighlight
-                title={CUSTOM_HOME_SEC_ESENTIAL.title}
-                subtitle={CUSTOM_HOME_SEC_ESENTIAL.subtitle}
-                description={CUSTOM_HOME_SEC_ESENTIAL.description}
-                sourceImages={[
-                    {src: getAssetUrl('/static/img/sec_essential_1.jpg'), alt: ''},
-                    {src: getAssetUrl('/static/img/sec_essential_2.jpg'), alt: ''},
-                    {src: getAssetUrl('/static/img/sec_essential_3.jpg'), alt: ''}
-                ]}
+            <Section title={CUSTOM_HOME_SEC_ESENTIAL.title}>
+                <ProductsHighlight
+                    title={CUSTOM_HOME_SEC_ESENTIAL.subtitle}
+                    description={CUSTOM_HOME_SEC_ESENTIAL.description}
+                    sourceImages={[
+                        {src: getAssetUrl('/static/img/sec_essential_1.jpg'), alt: ''},
+                        {src: getAssetUrl('/static/img/sec_essential_2.jpg'), alt: ''},
+                        {src: getAssetUrl('/static/img/sec_essential_3.jpg'), alt: ''}
+                    ]}
+                    actions={
+                        <Button
+                            as={Link}
+                            href="https://developer.salesforce.com/docs/commerce/pwa-kit-managed-runtime/guide/getting-started.html"
+                            target="_blank"
+                            variant="outline"
+                            size={['sm', 'md', 'lg']}
+                            width={{base: 'full', md: 'inherit'}}
+                            marginTop={[3, 6, 9]}
+                        >
+                            <FormattedMessage defaultMessage="Shop now" id="home.link.shop_now" />
+                        </Button>
+                    }
+                />
+            </Section>
+            {/* Products Grid */}
+            {productSearchResult && (
+                <Section>
+                    <ProductsGrid products={productSearchResult?.hits} isLoading={isLoading} />
+                </Section>
+            )}
+            {/* Products Scroller */}
+            {productSearchResult && (
+                <Section title="Spring Summer Show 2025">
+                    <ProductScroller products={productSearchResult?.hits} isLoading={isLoading} />
+                </Section>
+            )}
+            <Banner
+                title={CUSTOM_HOME_BANNER_TITLE}
+                img={{src: getAssetUrl('/static/img/home_banner.jpg'), alt: ''}}
                 actions={
                     <Button
                         as={Link}
                         href="https://developer.salesforce.com/docs/commerce/pwa-kit-managed-runtime/guide/getting-started.html"
                         target="_blank"
-                        variant="outline"
-                        size="lg"
+                        variant="solid"
+                        size={['sm', 'md', 'lg']}
                         width={{base: 'full', md: 'inherit'}}
                         marginTop={4}
                     >
@@ -127,56 +146,10 @@ const Home = () => {
                     </Button>
                 }
             />
+            {/* Products Grid */}
             {productSearchResult && (
-                <Section
-                    padding={4}
-                    paddingTop={16}
-                    title={intl.formatMessage({
-                        defaultMessage: 'Shop Products',
-                        id: 'home.heading.shop_products'
-                    })}
-                    subtitle={intl.formatMessage(
-                        {
-                            defaultMessage:
-                                'This section contains content from the catalog. {docLink} on how to replace it.',
-                            id: 'home.description.shop_products',
-                            description:
-                                '{docLink} is a html button that links the user to https://sfdc.co/business-manager-manage-catalogs'
-                        },
-                        {
-                            docLink: (
-                                <Link
-                                    target="_blank"
-                                    href={'https://sfdc.co/business-manager-manage-catalogs'}
-                                    textDecoration={'none'}
-                                    position={'relative'}
-                                    _after={{
-                                        position: 'absolute',
-                                        content: `""`,
-                                        height: '2px',
-                                        bottom: '-2px',
-                                        margin: '0 auto',
-                                        left: 0,
-                                        right: 0,
-                                        background: 'gray.700'
-                                    }}
-                                    _hover={{textDecoration: 'none'}}
-                                >
-                                    {intl.formatMessage({
-                                        defaultMessage: 'Read docs',
-                                        id: 'home.link.read_docs'
-                                    })}
-                                </Link>
-                            )
-                        }
-                    )}
-                >
-                    <Stack pt={8} spacing={16}>
-                        <ProductScroller
-                            products={productSearchResult?.hits}
-                            isLoading={isLoading}
-                        />
-                    </Stack>
+                <Section>
+                    <ProductsGrid products={productSearchResult?.hits} isLoading={isLoading} />
                 </Section>
             )}
         </Box>

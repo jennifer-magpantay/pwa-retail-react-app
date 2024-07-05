@@ -12,7 +12,7 @@ const textStyles = {
         },
         heroSubtitle: {
             fontFamily: `"Montserrat", ${base.fonts?.heading}, sans-serif`,
-            fontWeight: 800,
+            fontWeight: 500,
             fontSize: ['1.25rem', '1.5rem', '2rem']
         },
         sectionTitle: {
@@ -25,7 +25,7 @@ const textStyles = {
         sectionSubtitle: {
             fontFamily: `"Montserrat", ${base.fonts?.heading}, sans-serif`,
             fontWeight: 800,
-            fontSize: ['1.5rem', '2rem', '2.5rem'],
+            fontSize: ['1.2rem', '1.44rem', '1.728rem'],
             lineHeight: 1
         },
         body: {

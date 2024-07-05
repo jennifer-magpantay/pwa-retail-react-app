@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Box, Flex, Heading, Stack, Image, useStyleConfig, Text} from '@chakra-ui/react'
+import {Box, Stack, Image, Text} from '@chakra-ui/react'
 
 const Hero = ({title, subtitle, img, actions, ...props}) => {
     const {src, alt} = img
 
     return (
-        <Box marginBottom={10} height="xl" position="relative" {...props}>
+        <Box marginBottom={10} layerStyle="banner" {...props}>
             <Stack
                 width="100%"
                 position="absolute"

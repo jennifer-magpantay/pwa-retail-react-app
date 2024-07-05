@@ -694,6 +694,12 @@
     "home.link.get_started": {
         "defaultMessage": "Get started"
     },
+    "home.link.shop_now": {
+        "defaultMessage": "Shop Now"
+    },
+    "home.link.see_all": {
+        "defaultMessage": "See all"
+    },
     "home.link.read_docs": {
         "defaultMessage": "Read docs"
     },

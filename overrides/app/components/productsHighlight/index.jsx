@@ -1,18 +1,18 @@
 import React from 'react'
-import {Box, Flex, Image, Stack, Text, useMediaQuery} from '@chakra-ui/react'
 import PropTypes from 'prop-types'
+import {Box, Flex, Image, Stack, Text, useMediaQuery} from '@chakra-ui/react'
 
-const SectionHighlight = ({title, subtitle, description, sourceImages, isReverse, actions}) => {
+const ProductsHighlight = ({title, description, sourceImages, isReverse, actions}) => {
     const [isLargerThan800] = useMediaQuery('(min-width: 800px)', {
         ssr: true,
         fallback: false
     })
 
     const content = (
-        <Box marginTop={2}>
-            {subtitle && (
+        <Box width={{base: '100%', lg: '75%'}} marginTop={[2, 4, 6]}>
+            {title && (
                 <Text as="h3" textStyle="sectionSubtitle" marginBottom={2}>
-                    {subtitle}
+                    {title}
                 </Text>
             )}
             {description && <Text fontSize="md">{description}</Text>}
@@ -21,18 +21,14 @@ const SectionHighlight = ({title, subtitle, description, sourceImages, isReverse
     )
 
     return (
-        <Box as="section" width="100%" height="auto">
-            <Text as="h2" textStyle="sectionTitle" width="50%" marginBottom={{base: '5', lg: '10'}}>
-                {title}
-            </Text>
-
+        <>
             <Flex
                 direction={isReverse ? 'row-reverse' : 'row'}
                 alignItems="stretch"
                 flexWrap={{base: 'wrap', lg: 'nowrap'}}
                 width="100%"
-                height="auto"
-                gap={{base: 2, lg: 4}}
+                height="xl"
+                gap={{base: 2, md: 12, lg: 16}}
             >
                 {sourceImages[0].src && (
                     <Box
@@ -59,7 +55,7 @@ const SectionHighlight = ({title, subtitle, description, sourceImages, isReverse
                         direction="row"
                         width="100%"
                         height={{base: '100%', lg: '50%'}}
-                        spacing={{base: 2, lg: 4}}
+                        spacing={{base: 2, md: 6, lg: 8}}
                     >
                         {sourceImages[1].src && (
                             <Box flex={1} width="100%" height="100%">
@@ -87,23 +83,27 @@ const SectionHighlight = ({title, subtitle, description, sourceImages, isReverse
                             </Box>
                         )}
                     </Stack>
-                    {isLargerThan800 && (subtitle || description || actions) && <>{content}</>}
+                    {isLargerThan800 && (title || description || actions) && <>{content}</>}
                 </Box>
             </Flex>
-            {!isLargerThan800 && (subtitle || description || actions) && <>{content}</>}
-        </Box>
+            {!isLargerThan800 && (title || description || actions) && <>{content}</>}
+        </>
     )
 }
 
-SectionHighlight.displayName = 'SectionHighlight'
+ProductsHighlight.displayName = 'ProductsHighlight'
 
-SectionHighlight.propTypes = {
+ProductsHighlight.propTypes = {
     title: PropTypes.string,
-    subtitle: PropTypes.string,
     description: PropTypes.string,
-    sourceImages: PropTypes.arrayOf(PropTypes.object),
+    sourceImages: PropTypes.arrayOf(
+        PropTypes.shape({
+            src: PropTypes.string,
+            alt: PropTypes.string
+        })
+    ),
     isReverse: PropTypes.bool,
     actions: PropTypes.element
 }
 
-export default SectionHighlight
+export default ProductsHighlight

@@ -1,11 +1,13 @@
+import {theme as base} from '@chakra-ui/react'
 import colors from '../../foundations/colors'
 
 const buttons = {
     Button: {
         baseStyle: {
             minW: 'fit-content',
-            fontWeight: 'bold',
-            textTransform: 'uppercase',
+            fontFamily: `"Montserrat", ${base.fonts?.heading}, sans-serif`,
+            fontWeight: 800,
+            lineHeight: 1,
             borderRadius: 'none',
             _hover: {
                 textDecoration: 'none'
@@ -13,17 +15,17 @@ const buttons = {
         },
         sizes: {
             sm: {
-                fontSize: '0.875rem',
+                fontSize: '1rem',
                 px: 8,
                 py: 4
             },
             md: {
-                fontSize: '0.875rem',
+                fontSize: '1.2rem',
                 px: 12,
                 py: 6
             },
             lg: {
-                fontSize: '1rem',
+                fontSize: '1.44rem',
                 px: 16,
                 py: 8
             }
